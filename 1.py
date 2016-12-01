@@ -14,11 +14,16 @@ for go in directions:
   rl, steps = go[0], int(go[1:])
   turn = -1 if rl == "L" else 1
   direction = (direction + turn) % 4
-  if direction % 2 != 0:
-    pos[0] += (direction-2) * steps
-  else:
-    pos[1] += (direction-1) * steps
-  print pos
+  for _ in range(steps):
+    if direction % 2 != 0:
+      pos[0] += (direction-2)
+    else:
+      pos[1] += (direction-1)
+    print pos
+    if tuple(pos) in visited:
+      print "visited {} {}".format(pos, abs(pos[0]) + abs(pos[1]))
+    else:
+      visited.add(tuple(pos))
 
 print abs(pos[0]) + abs(pos[1])
 
