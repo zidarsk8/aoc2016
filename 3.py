@@ -1,4 +1,5 @@
 import data_3
+from collections import Counter
 
 lines = [sorted(map(int, line.split())) for line in data_3.text.splitlines()]
 
