@@ -21,3 +21,22 @@ sorted_words = [
 valid_ids = [id_ for word, id_, checksum in sorted_words if word == checksum]
 
 print sum(valid_ids)
+
+
+
+tuples = [("-".join(part[0:-1]), int(part[-1].split("[")[0]), part[-1].split("[")[1][0:-1])
+          for part in parts]
+
+char_map = {i:char for i,char in enumerate("abcdefghijklmnopqrstuvwxyz")}
+index_map = {v:k for k, v in char_map.items()}
+
+
+for t in tuples:
+  new_str = "".join(
+    char_map[(index_map[char]+t[1]) % 26] if char in index_map else " "
+    for char in t[0]
+  )
+  if "north" in new_str:
+    print new_str, t
+
+
